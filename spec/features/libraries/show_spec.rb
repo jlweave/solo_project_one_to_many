@@ -16,7 +16,7 @@ RSpec.describe "library show page" do
       expect(page).to have_content(@library1.city)
       expect(page).to have_content(@library1.name)
       expect(page).to have_content(@library1.computer_lab)
-      save_and_open_page
+     
       end
     end
     #(data from each column that is on the parent table)
