@@ -24,4 +24,15 @@ RSpec.describe "library show page" do
     end
     #(data from each column that is on the parent table)
   end
+
+  describe "user story 7" do
+    describe "as a visitor when I visit my parents show page" do
+      it "I see a count of the number of children associated with this parent" do
+       visit "/libraries/#{@library1.id}"
+
+       expect(page).to have_content(@library1.books.count)
+       
+      end
+    end
+  end
 end
