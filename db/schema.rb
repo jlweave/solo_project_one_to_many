@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_02_011007) do
+ActiveRecord::Schema.define(version: 2022_12_03_031508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.bigint "library_id"
     t.string "name"
-    t.integer "IBN"
+    t.bigint "IBN"
     t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "library_id"
     t.index ["library_id"], name: "index_books_on_library_id"
   end
 
@@ -29,11 +29,10 @@ ActiveRecord::Schema.define(version: 2022_12_02_011007) do
     t.string "name"
     t.string "city"
     t.boolean "computer_lab"
+    t.bigint "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "book_id"
-    t.index ["book_id"], name: "index_libraries_on_book_id"
   end
 
-  add_foreign_key "libraries", "books"
+  add_foreign_key "books", "libraries"
 end
