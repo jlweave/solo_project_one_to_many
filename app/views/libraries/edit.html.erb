@@ -1,0 +1,12 @@
+<%= form_with url: "/libraries/#{@library.id}", method: :patch, local: true do |form|%>
+<p><%= form.label :name %></p>
+<p><%= form.text_field :name %></p>
+<p><%= form.label :city %></p>
+<p><%= form.text_field :city %></p>
+<p><%= form.label :phone_number %></p>
+<p><%= form.number_field :phone_number %></p>
+<p>Has Computer Lab?<p>
+<p>true<%= form.radio_button :computer_lab, value=true%></p>
+<p>false<%= form.radio_button :computer_lab, value=false%></p>
+<%= form.submit 'Update Library' %>
+<% end %>

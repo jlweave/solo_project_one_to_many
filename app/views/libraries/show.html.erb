@@ -2,5 +2,5 @@
 <p>Which city in Colorado is the Library located: <%= @library.city %></p>
 <p>Does the Library have a computer lab?: <%= @library.computer_lab %></p>
 <p>This Library has: <%= @library.books.count %> books</p>
-
+<%= link_to "Edit #{@library.name}", "/libraries/#{@library.id}/edit" %> &nbsp &nbsp
 <%= link_to "#{@library.name}s books", "/libraries/#{@library.id}/books" %>
