@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   patch '/libraries/:id', to: 'libraries#update'
   get '/libraries/:id/books/new', to: 'library_books#new'
   post '/libraries/:id/books', to: 'library_books#create'
+  get '/books/:id/edit', to: 'books#edit'
+  patch '/books/:id', to: 'books#update'
 end
