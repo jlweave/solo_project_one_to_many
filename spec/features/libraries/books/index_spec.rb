@@ -34,4 +34,6 @@ RSpec.describe 'Libraries books index' do
     expect(page).to_not have_content(@book4.name)
     expect(page).to_not have_content(@book5.name)
   end
+
+ 
 end
