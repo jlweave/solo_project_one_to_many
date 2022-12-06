@@ -1,0 +1,12 @@
+<%= form_with url:"/libraries/#{@library.id}/books", method: :post, local: true do |form| %>
+<p><%= form.label :name %></p>
+<p><%= form.text_field :name %></p>
+<p><%= form.label :IBN %></p>
+<p><%= form.number_field :IBN %></p>
+<p>Is Available?</p>
+<p>true<%= form.radio_button :available, value=true%></p>
+<p>false<%= form.radio_button :available, value=false%></p>
+
+
+<%= form.submit "Submit Create New Book" %>
+<% end %>

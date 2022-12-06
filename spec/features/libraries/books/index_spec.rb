@@ -35,5 +35,31 @@ RSpec.describe 'Libraries books index' do
     expect(page).to_not have_content(@book5.name)
   end
 
+  it 'does it have a link to create a new book' do
+    visit "/libraries/#{@library1.id}/books"
+
+    expect(page).to have_link("Create Book")  
+  end
+
+  it "create a new book with it's attributes" do
+    visit "/libraries/#{@library1.id}/books"
+
+    click_link("Create Book")
+
+    expect(current_path).to eq("/libraries/#{@library1.id}/books/new")
+
+    fill_in('name', with: "Mary Poppins")
+    fill_in('IBN', with: "9780385297922")
+    choose('available', with: true)
+    click_button("Submit Create New Book")
+
+    expect(current_path).to eq("/libraries/#{@library1.id}/books")
+
+    poppins = Book.last 
+    expect(page).to have_content(poppins.name)
+    expect(page).to have_content(poppins.IBN)
+    expect(page).to have_content(poppins.available)
+  end
+
  
 end
