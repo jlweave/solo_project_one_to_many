@@ -38,10 +38,12 @@ RSpec.describe "library show page" do
 
     describe "" do
    it "links to books show page " do
-    visit "/libraries/#{@library1.id}/books"
+    visit "/libraries/#{@library1.id}"
 
     expect(page).to have_link("books")
-    click_link("books")
+    click_link("#{@library1.name}s books")
+    
+
     expect(current_path).to eq("/libraries/#{@library1.id}/books")
    end
   end

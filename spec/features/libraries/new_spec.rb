@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "library index page" do
+RSpec.describe "Parents index page new" do
   before(:each) do
     @library1 = Library.create!(city: "Denver", name:"Denver Public Library", computer_lab: true, phone_number: 7208651111)
     @library2 = Library.create!(city: "Colorado Spring", name:"Colorado Springs Public Library", computer_lab: false, phone_number: 7195316333)
@@ -9,19 +9,30 @@ RSpec.describe "library index page" do
     @book3 = @library2.books.create!(name: "Lessons in Chemisty", IBN: 9780385549400, available: true)
     @book4 = @library2.books.create!(name: "The Light We Carry: Overcoming in Uncertain Times", IBN: 9780593237465, available: false)
     @book5 = @library2.books.create!(name: "If He Had Been with Me", IBN: 9781728205489, available: true)
-
   end
 
-  describe "user story 1" do
-    describe "For each parent table, as a visitor" do
-      it "When I visit '/parents', Then I see the name of each parent record in the system" do
-        #require 'pry'; binding.pry
+  describe "user story 11" do
+    describe "When I visit the Parent Index page" do
+      it "links to the new page from the libraries index" do
         visit "/libraries"
 
-        expect(@library1.name).to appear_before(@library2.name)
-        expect(@library2.name).to_not appear_before(@library1.name)
-        expect(page).to have_content(@library1.created_at)
+        click_link "New Library"
+        expect(current_path).to eq("/libraries/new")
       end
+
+      it "can create a new library" do
+        visit '/libraries/new'
+
+        fill_in('name', with: "Fountain Public Library")
+        fill_in('city', with: "Fountain")
+        fill_in('phone_number', with: "7195316333")
+        choose('computer_lab', with: true)
+        click_button("Create Library")
+        
+        new_library_id = Library.last.id
+        expect(current_path).to eq("/libraries/#{new_library_id}")
+        expect(page).to have_content("Fountain Public Library")
+      end      
     end
   end
 end
