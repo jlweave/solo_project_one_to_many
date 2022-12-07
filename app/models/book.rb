@@ -4,4 +4,8 @@ class Book < ApplicationRecord
   def self.only_available
     where({available: true})
   end
+
+  def self.alpha_order
+    order(:name)
+  end
 end
