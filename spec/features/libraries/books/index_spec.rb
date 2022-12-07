@@ -61,5 +61,17 @@ RSpec.describe 'Libraries books index' do
     expect(page).to have_content(poppins.available)
   end
 
+  it 'can show the books in alphabetical order' do
+    visit "/libraries/#{@library2.id}/books"
+    expect(@book3.name).to appear_before(@book4.name)
+    expect(@book4.name).to appear_before(@book5.name)
+
+    click_link("Alphabetical")
+    expect(current_path).to eq("/libraries/#{@library2.id}/books")
+
+    expect(@book5.name).to appear_before(@book3.name)
+    expect(@book3.name).to appear_before(@book4.name)
+  end
+
  
 end
